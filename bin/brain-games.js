@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { welcomingFunc } from "../src/cli";
+import { welcomingFunc } from "../src/cli.js";
 
 welcomingFunc()
 
