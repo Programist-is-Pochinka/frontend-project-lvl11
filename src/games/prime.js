@@ -1,36 +1,35 @@
 import readlineSync from 'readline-sync';
-import { welcomingFunc } from "../cli.js";
+import { welcomingFunc } from '../cli.js';
 import { wrongMessage } from '../wrongMessage.js';
 
 const isPrime = (num) => {
-    for (let i = 2; i < num; i++) {
-        if (num % i === 0) return false;
-    }
+  for (let i = 2; i < num; i++) {
+    if (num % i === 0) return false;
+  }
 
-    return true;
+  return true;
 };
-const sayCorrect = (answer) => answer ? "yes" : "no";
-
+const sayCorrect = (answer) => (answer ? 'yes' : 'no');
 
 export const primeGame = () => {
-    const name = welcomingFunc();
+  const name = welcomingFunc();
 
-    console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
+  console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
 
-    let count = 0;
-    while (count < 3) {
-        const num = Math.round(Math.random() * 100);
-        console.log(`Question: ${num}`);
-        const answer = readlineSync.question(`Your answer: `);
-        const rightAnswer = sayCorrect(isPrime(num));
+  let count = 0;
+  while (count < 3) {
+    const num = Math.round(Math.random() * 100);
+    console.log(`Question: ${num}`);
+    const answer = readlineSync.question('Your answer: ');
+    const rightAnswer = sayCorrect(isPrime(num));
 
-        if (rightAnswer === answer) {
-            console.log("Correct!");
-            count++;
-        } else {
-            return wrongMessage(name, answer, rightAnswer);
-        }
+    if (rightAnswer === answer) {
+      console.log('Correct!');
+      count++;
+    } else {
+      return wrongMessage(name, answer, rightAnswer);
     }
+  }
 
-    console.log(`Congratulations, ${name}!`);
-}
+  console.log(`Congratulations, ${name}!`);
+};
