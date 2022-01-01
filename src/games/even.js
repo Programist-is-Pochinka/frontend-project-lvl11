@@ -1,11 +1,11 @@
 import readlineSync from 'readline-sync';
-import { welcomingFunc } from '../cli.js';
-import { wrongMessage } from '../wrongMessage.js';
+import welcomingFunc from '../cli.js';
+import wrongMessage from '../wrongMessage.js';
 
 const isEven = (num) => ((num % 2 === 0));
 const sayCorrect = (answer) => (answer ? 'yes' : 'no');
 
-export const evenGame = () => {
+export default () => {
   const name = welcomingFunc();
 
   console.log('Answer "yes" if the number is even, otherwise answer "no".');
@@ -17,16 +17,14 @@ export const evenGame = () => {
     const answer = readlineSync.question('Your answer: ');
     const rightAnswer = sayCorrect(isEven(num));
 
-    if (rightAnswer === 'yes' && answer === 'yes') {
+    if (rightAnswer === answer) {
       console.log('Correct!');
-      count++;
-    } else if (rightAnswer === 'no' && answer === 'no') {
-      console.log('Correct!');
-      count++;
+      count += 1;
     } else {
       return wrongMessage(name, answer, rightAnswer);
     }
   }
 
   console.log(`Congratulations, ${name}!`);
+  return null;
 };

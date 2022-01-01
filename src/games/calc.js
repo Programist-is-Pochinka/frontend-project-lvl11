@@ -1,8 +1,8 @@
 import readlineSync from 'readline-sync';
-import { welcomingFunc } from '../cli.js';
-import { wrongMessage } from '../wrongMessage.js';
+import welcomingFunc from '../cli.js';
+import wrongMessage from '../wrongMessage.js';
 
-export const calcGame = () => {
+export default () => {
   const name = welcomingFunc();
 
   console.log('What is the result of the expression?');
@@ -27,11 +27,12 @@ export const calcGame = () => {
     const answer = readlineSync.question('Your answer: ');
     if (+answer === rightAnswer) {
       console.log('Correct!');
-      count++;
+      count += 1;
     } else {
       return wrongMessage(name, answer, rightAnswer);
     }
   }
 
   console.log(`Congratulations, ${name}!`);
+  return null;
 };

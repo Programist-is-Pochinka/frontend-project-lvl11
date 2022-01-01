@@ -1,13 +1,15 @@
 import readlineSync from 'readline-sync';
-import { welcomingFunc } from '../cli.js';
-import { wrongMessage } from '../wrongMessage.js';
+import welcomingFunc from '../cli.js';
+import wrongMessage from '../wrongMessage.js';
 
 const getGcd = (num1, num2) => {
-  while (num2 !== 0) num2 = num1 % (num1 = num2);
-  return num1;
+  let first = num1;
+  let second = num2;
+  while (second !== 0) second = first % (first = second);
+  return first;
 };
 
-export const gcdGame = () => {
+export default () => {
   const name = welcomingFunc();
 
   console.log('What is the result of the expression?');
@@ -18,15 +20,16 @@ export const gcdGame = () => {
     const num2 = Math.round(Math.random() * 100);
     const rightAnswer = getGcd(num1, num2);
     console.log(`Question: ${num1} ${num2}`);
-    const answer = readlineSync.question('Your answer: ');
+    const answer = +readlineSync.question('Your answer: ');
 
-    if (rightAnswer == answer) {
+    if (rightAnswer === answer) {
       console.log('Correct!');
-      count++;
+      count += 1;
     } else {
       return wrongMessage(name, answer, rightAnswer);
     }
   }
 
   console.log(`Congratulations, ${name}!`);
+  return null;
 };
